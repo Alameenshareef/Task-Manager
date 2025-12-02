@@ -32,6 +32,9 @@ mongoose
 app.use("/api/auth", authRoutes)
 app.use("/api/tasks", taskRoutes)
 
+app.get("/", (req, res) => {
+  res.json("Hello")
+})
 // Health check
 app.get("/api/health", (req, res) => {
   res.json({ status: "Server is running" })
