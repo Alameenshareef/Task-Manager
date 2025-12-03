@@ -17,15 +17,26 @@ dotenv.config()
 
 const app = express()
 
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://task-manager-jer1.vercel.app",
+]
+
 app.use(
   cors({
-    origin: "https://task-manager-jer1.vercel.app",
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true)
+      } else {
+        callback(new Error("Not allowed by CORS"))
+      }
+    },
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     credentials: true,
   })
-);
+)
 
-app.options("*", cors());
+app.options("*", cors())
 
 // Middleware
 app.use(cors())

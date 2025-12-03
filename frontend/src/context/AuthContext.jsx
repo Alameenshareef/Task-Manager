@@ -4,7 +4,7 @@ import { createContext, useContext, useState, useEffect } from "react"
 import axios from "axios"
 
 const AuthContext = createContext()
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api"
+const API_URL = import.meta.env.VITE_API_URL || "https://task-manager-2-501n.onrender.com"
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
