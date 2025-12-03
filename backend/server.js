@@ -22,24 +22,23 @@ const allowedOrigins = [
   "https://task-manager-jer1.vercel.app",
 ]
 
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true)
-      } else {
-        callback(new Error("Not allowed by CORS"))
-      }
-    },
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-    credentials: true,
-  })
-)
+// ✅ 2. Single, proper CORS config
+const corsOptions = {
+  origin: function (origin, callback) {
+    // origin will be undefined for tools like Postman; allow in that case
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true)
+    } else {
+      callback(new Error("Not allowed by CORS"))
+    }
+  },
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  credentials: true,
+}
 
-app.options("*", cors())
+app.use(cors(corsOptions))
+app.options("*", cors(corsOptions))
 
-// Middleware
-app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ limit: "50mb", extended: true }))
 
