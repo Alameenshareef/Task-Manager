@@ -24,7 +24,7 @@ app.use(express.urlencoded({ limit: "50mb", extended: true }))
 
 // MongoDB Connection
 mongoose
-  .connect(process.env.MONGODB_URI || "mongodb+srv://ameendevhouse_db_user:ywuehdbdbndn@cluster0.y1nkur8.mongodb.net/taskmanager")
+  .connect(process.env.MONGODB_URI || "mongodb+srv://mudiir:UGgLAbbXMwRSVx5j@cluster0.n2gryin.mongodb.net/taskmanager")
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error("MongoDB connection error:", err))
 
