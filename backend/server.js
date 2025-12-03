@@ -17,6 +17,16 @@ dotenv.config()
 
 const app = express()
 
+app.use(
+  cors({
+    origin: "https://task-manager-jer1.vercel.app",
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    credentials: true,
+  })
+);
+
+app.options("*", cors());
+
 // Middleware
 app.use(cors())
 app.use(express.json())
